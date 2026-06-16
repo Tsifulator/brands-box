@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+import { brands } from '../data/brands.js';
+import BrandCard from '../components/BrandCard.astro';
+
+const featured = brands.slice(0, 4);
+const marquee = [...brands, ...brands]; // duplicated for a seamless loop
+---
+
+<Base pad={false}>
+  <!-- ── HERO ───────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="overline">Multibrand Fashion Showroom · Athens</p>
+      <h1 class="hero-title">A curated house of<br /><em>international</em> fashion.</h1>
+      <p class="hero-sub">
+        Brands Box represents a considered portfolio of European and international
+        labels to the finest boutiques and retailers — wholesale, season after season.
+      </p>
+      <div class="hero-actions">
+        <a href="/brands" class="btn">View the brands</a>
+        <a href="/contact" class="btn btn-ghost">Book a showroom visit</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="/showroom/1.jpg" alt="Brands Box showroom, Athens" onerror="this.style.display='none'" />
+    </div>
+  </section>
+
+  <!-- ── BRAND MARQUEE ──────────────────────────────────────────────── -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      {marquee.map((b) => <span class="marquee-item">{b.name}</span>)}
+    </div>
+  </div>
+
+  <!-- ── STATEMENT ──────────────────────────────────────────────────── -->
+  <section class="section container">
+    <div class="statement">
+      <p class="overline reveal">The showroom</p>
+      <div class="statement-body reveal">
+        <p>We are a multibrand showroom in the heart of Athens — a single address where buyers discover, edit and order from a family of international houses.</p>
+        <p>Part gallery, part agency: we represent each label with the care it deserves, and connect it with the retailers who will champion it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURED BRANDS ────────────────────────────────────────────── -->
+  <section class="section bg-bone">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="overline reveal">The portfolio</p>
+          <h2 class="h-lg reveal" style="margin-top:.6rem">Brands we represent</h2>
+        </div>
+        <a href="/brands" class="link-underline reveal">All brands</a>
+      </div>
+      <div class="brand-grid">
+        {featured.map((b) => <BrandCard brand={b} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NOW SHOWING ────────────────────────────────────────────────── -->
+  <section class="section container center">
+    <p class="overline reveal">Now showing</p>
+    <h2 class="h-xl reveal" style="margin-top:1rem">Spring · Summer 26</h2>
+    <p class="lead reveal measure" style="margin:1.4rem auto 0">
+      The new season collections are arriving in the showroom. Book an appointment
+      to preview and place your wholesale orders.
+    </p>
+    <div class="reveal" style="margin-top:2rem">
+      <a href="/contact" class="btn">Book an appointment</a>
+    </div>
+  </section>
+
+  <!-- ── SHOWROOM TEASER ────────────────────────────────────────────── -->
+  <section class="section bg-bone">
+    <div class="container split">
+      <div class="split-media order-first reveal">
+        <img src="/showroom/2.jpg" alt="The showroom space" onerror="this.style.display='none'" />
+      </div>
+      <div class="reveal">
+        <p class="overline">The space</p>
+        <h2 class="h-lg" style="margin:.8rem 0 1.4rem">Where buyers meet the season.</h2>
+        <p class="lead">
+          Our Athens showroom is open by appointment throughout the buying calendar.
+          See the collections in person, in a setting built to show them at their best.
+        </p>
+        <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap">
+          <a href="/showroom" class="btn">Visit the showroom</a>
+          <a href="/contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

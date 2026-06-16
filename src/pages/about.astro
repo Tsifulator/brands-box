@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+import { brands } from '../data/brands.js';
+---
+
+<Base
+  title="About — Brands Box"
+  description="Brands Box is a multibrand fashion showroom in Athens representing international houses for wholesale and retail."
+>
+  <section class="section container">
+    <p class="overline reveal">About</p>
+    <h1 class="h-xl reveal measure" style="margin-top:1rem">
+      A single address for the season’s best houses.
+    </h1>
+  </section>
+
+  <section class="container" style="padding-bottom:var(--section)">
+    <div class="statement">
+      <p class="overline reveal">Our role</p>
+      <div class="statement-body reveal">
+        <p>Brands Box is a multibrand fashion showroom based in Athens. We represent a curated portfolio of international labels and bring them to the boutiques, department stores and retailers of the Greek market.</p>
+        <p>We are part agency, part gallery — a place where buyers discover collections, place wholesale orders, and build the season ahead with guidance they can trust.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-bone">
+    <div class="container">
+      <div class="brand-grid cols-3">
+        <div class="reveal">
+          <h3 class="h-md">Representation</h3>
+          <p class="lead" style="margin-top:1rem">Dedicated, considered representation for each house across the Greek wholesale market.</p>
+        </div>
+        <div class="reveal">
+          <h3 class="h-md">Distribution</h3>
+          <p class="lead" style="margin-top:1rem">From order to delivery, we support retailers through every step of the buying calendar.</p>
+        </div>
+        <div class="reveal">
+          <h3 class="h-md">Curation</h3>
+          <p class="lead" style="margin-top:1rem">A tightly edited portfolio, chosen for quality, identity and the boutiques we serve.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container center">
+    <div class="brand-grid cols-3">
+      <div class="reveal"><div class="h-lg">{brands.length}</div><p class="overline" style="margin-top:.6rem">Houses represented</p></div>
+      <div class="reveal"><div class="h-lg">Athens</div><p class="overline" style="margin-top:.6rem">Showroom</p></div>
+      <div class="reveal"><div class="h-lg">SS26</div><p class="overline" style="margin-top:.6rem">Current season</p></div>
+    </div>
+  </section>
+
+  <section class="section bg-ink cta-band">
+    <div class="container">
+      <h2 class="h-lg reveal">Represent your brand with us.</h2>
+      <p class="lead reveal measure" style="margin:0 auto 2rem">
+        Whether you are a retailer looking to buy, or a label looking for Greek
+        representation, we would love to talk.
+      </p>
+      <a href="/contact" class="btn reveal">Get in touch</a>
+    </div>
+  </section>
+</Base>

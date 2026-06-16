@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import { brands } from '../../data/brands.js';
+import BrandCard from '../../components/BrandCard.astro';
+---
+
+<Base
+  title="Brands — Brands Box"
+  description="The portfolio of international fashion houses represented by Brands Box, Athens."
+>
+  <section class="section container">
+    <div class="section-head" style="align-items:flex-end">
+      <div>
+        <p class="overline reveal">The portfolio</p>
+        <h1 class="h-xl reveal" style="margin-top:1rem">Brands</h1>
+      </div>
+      <p class="lead reveal" style="max-width:34ch">
+        {brands.length} international houses, curated and represented for the Greek market.
+      </p>
+    </div>
+
+    <div class="brand-grid">
+      {brands.map((b) => <BrandCard brand={b} />)}
+    </div>
+  </section>
+</Base>

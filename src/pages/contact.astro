@@ -1,0 +1,136 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Contact — Brands Box"
+  description="Contact Brands Box — book a showroom appointment, request a collection, or enquire about wholesale and representation."
+>
+  <section class="section container">
+    <div class="split" style="align-items:start">
+      <div class="reveal">
+        <p class="overline">Contact</p>
+        <h1 class="h-xl" style="margin:1rem 0 1.4rem">Let’s talk.</h1>
+        <p class="lead measure">
+          Book a showroom appointment, request a collection, or enquire about
+          representation. We reply to every message personally.
+        </p>
+
+        <div style="margin-top:2.5rem; display:grid; gap:1.4rem">
+          <div><p class="brand-card-meta">Email</p><a href="mailto:dimitra@brandsboxshowroom.com" class="lead">dimitra@brandsboxshowroom.com</a></div>
+          <div><p class="brand-card-meta">Phone</p><a href="tel:+302109648448" class="lead">+30 210 9648448</a></div>
+          <div><p class="brand-card-meta">Instagram</p><a href="https://www.instagram.com/brandsboxshowroom/" target="_blank" rel="noopener" class="lead">@brandsboxshowroom</a></div>
+          <div><p class="brand-card-meta">Showroom</p><p class="lead">Meandrou 19<br />115 28 Athína (Athens), Greece</p></div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <form id="bx-form" class="bx-form" action="https://api.web3forms.com/submit" method="POST">
+          <!-- TODO: create a free key at web3forms.com using dimitra@brandsboxshowroom.com and paste it below -->
+          <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY" />
+          <input type="hidden" name="subject" value="New enquiry — brands-box.com" />
+          <input type="hidden" name="from_name" value="Brands Box Website" />
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" />
+
+          <div class="field"><label>Name</label><input name="name" required /></div>
+          <div class="field"><label>Company / boutique</label><input name="company" /></div>
+          <div class="form-row">
+            <div class="field"><label>City</label><input name="city" /></div>
+            <div class="field">
+              <label>I am a</label>
+              <select name="enquiry_type">
+                <option>Retailer / buyer</option>
+                <option>Brand / label</option>
+                <option>Press</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Email</label><input type="email" name="email" required /></div>
+            <div class="field"><label>Phone</label><input name="phone" /></div>
+          </div>
+          <div class="field"><label>Message</label><textarea name="message" rows="4"></textarea></div>
+          <button type="submit" class="btn" style="width:100%; justify-content:center">Send enquiry</button>
+          <p id="bx-form-status" class="form-status" role="status" aria-live="polite" hidden></p>
+          <p class="form-note">By sending, you agree to be contacted about your enquiry.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const form = document.getElementById('bx-form') as HTMLFormElement | null;
+  const status = document.getElementById('bx-form-status');
+
+  if (form && status) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const button = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+      const accessKey = (form.querySelector('input[name="access_key"]') as HTMLInputElement | null)?.value;
+
+      // Guard: form not configured yet (placeholder key still in place).
+      if (!accessKey || accessKey.startsWith('REPLACE_WITH')) {
+        showStatus('error', 'Form not configured yet — please email dimitra@brandsboxshowroom.com directly.');
+        return;
+      }
+
+      const originalLabel = button?.textContent ?? 'Send enquiry';
+      if (button) { button.disabled = true; button.textContent = 'Sending…'; }
+      status.hidden = true;
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok && data.success) {
+          form.reset();
+          showStatus('ok', 'Thank you — your enquiry has been sent. We’ll be in touch shortly.');
+          if (button) button.textContent = 'Sent';
+          return;
+        }
+        showStatus('error', data.message || 'Something went wrong. Please try again, or email us directly.');
+      } catch {
+        showStatus('error', 'Network error. Please try again, or email dimitra@brandsboxshowroom.com directly.');
+      } finally {
+        if (button && button.textContent === 'Sending…') {
+          button.disabled = false;
+          button.textContent = originalLabel;
+        }
+      }
+    });
+  }
+
+  function showStatus(kind: 'ok' | 'error', message: string) {
+    if (!status) return;
+    status.textContent = message;
+    status.dataset.kind = kind;
+    status.hidden = false;
+  }
+</script>
+
+<style>
+  .bx-form { display: grid; gap: 1.2rem; }
+  .field { display: grid; gap: 0.5rem; }
+  .field label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); }
+  .field input, .field select, .field textarea {
+    font-family: var(--sans); font-size: 1rem; font-weight: 300; color: var(--ink);
+    background: transparent; border: 0; border-bottom: 1px solid var(--line);
+    padding: 0.7rem 0; transition: border-color .3s; width: 100%;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--ink); }
+  .field textarea { resize: vertical; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .form-note { font-size: 0.72rem; color: var(--ink-faint); letter-spacing: 0.04em; }
+  .form-status { font-size: 0.85rem; letter-spacing: 0.02em; padding: 0.9rem 1.1rem; border: 1px solid var(--line); }
+  .form-status[data-kind="ok"] { border-color: var(--ink); color: var(--ink); }
+  .form-status[data-kind="error"] { border-color: #b00020; color: #b00020; }
+  .hp { position: absolute; left: -9999px; }
+  @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+</style>

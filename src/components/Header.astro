@@ -1,0 +1,44 @@
+---
+import Logo from './Logo.astro';
+
+const links = [
+  { href: '/brands', label: 'Brands' },
+  { href: '/about', label: 'About' },
+  { href: '/showroom', label: 'Showroom' },
+  { href: '/contact', label: 'Contact' },
+];
+
+// `over` = transparent header laid over a dark hero (home). Otherwise solid.
+const { over = false } = Astro.props;
+const path = Astro.url.pathname;
+---
+
+<header class={`site-header ${over ? 'is-over' : ''}`} data-header>
+  <div class="container header-inner">
+    <a href="/" class="header-logo" aria-label="Brands Box — home">
+      <Logo />
+    </a>
+
+    <nav class="header-nav" aria-label="Primary">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class={`nav-link ${path.startsWith(l.href) ? 'is-active' : ''}`}
+        >{l.label}</a>
+      ))}
+      <a href="/contact" class="nav-cta">Book a visit</a>
+    </nav>
+
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" data-nav-toggle>
+      <span></span><span></span>
+    </button>
+  </div>
+
+  <!-- mobile fullscreen menu -->
+  <div class="mobile-menu" data-mobile-menu>
+    <nav aria-label="Mobile">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      <a href="/contact" class="mm-cta">Book a visit</a>
+    </nav>
+  </div>
+</header>

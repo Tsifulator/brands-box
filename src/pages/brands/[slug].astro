@@ -1,0 +1,61 @@
+---
+import Base from '../../layouts/Base.astro';
+import { brands } from '../../data/brands.js';
+
+export function getStaticPaths() {
+  return brands.map((b) => ({ params: { slug: b.slug }, props: { brand: b } }));
+}
+
+const { brand } = Astro.props;
+const idx = brands.findIndex((b) => b.slug === brand.slug);
+const next = brands[(idx + 1) % brands.length];
+---
+
+<Base title={`${brand.name} — Brands Box`} description={brand.short}>
+  <!-- brand hero -->
+  <section class="section container">
+    <div class="split">
+      <div class="reveal">
+        <p class="overline">{brand.origin}{brand.since ? ` · Since ${brand.since}` : ''}</p>
+        <h1 class="h-xl" style="margin:1rem 0 1.4rem">{brand.name}</h1>
+        <p class="lead">{brand.blurb}</p>
+        <p class="brand-card-meta" style="margin-top:2rem">{brand.category}</p>
+        <div style="margin-top:2.2rem; display:flex; gap:1rem; flex-wrap:wrap">
+          <a href="/contact" class="btn">Request this collection</a>
+          {brand.site && (
+            <a href={brand.site} target="_blank" rel="noopener" class="btn btn-ghost">Brand site ↗</a>
+          )}
+        </div>
+      </div>
+      <div class="split-media tall logo-tile reveal">
+        {brand.logo
+          ? <img src={brand.logo} alt={brand.name} />
+          : <span class="logo-fallback">{brand.name}</span>}
+      </div>
+    </div>
+  </section>
+
+  <!-- gallery — selected looks -->
+  {brand.gallery && brand.gallery.length > 0 && (
+    <section class="section bg-bone">
+      <div class="container">
+        <p class="overline reveal" style="margin-bottom:2rem">Selected looks</p>
+        <div class={`brand-grid ${brand.gallery.length >= 3 ? 'cols-3' : ''}`}>
+          {brand.gallery.map((src, i) => (
+            <div class="brand-card-media reveal">
+              <img src={src} alt={`${brand.name} look ${i + 1}`} loading="lazy" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- next house -->
+  <section class="section container center">
+    <p class="overline reveal">Next house</p>
+    <a href={`/brands/${next.slug}`} class="h-lg reveal" style="display:inline-block;margin-top:1rem">
+      {next.name} →
+    </a>
+  </section>
+</Base>

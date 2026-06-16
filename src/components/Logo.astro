@@ -1,0 +1,64 @@
+---
+// Brands Box wordmark — SVG recreation of the logo: lowercase rounded
+// "brandsbox" with the signature dotted box standing in for the "o" of "box",
+// and the open square frame sitting ABOVE the right of the wordmark.
+//
+// Robust layout: the two text runs are anchored to the box ("brandsb" ends just
+// left of the box, "x" starts just right of it) so they never collide with the
+// box regardless of how the Quicksand font loads. viewBox is wide enough that
+// the full-width Quicksand wordmark is never clipped.
+// Swap for the original vector any time by dropping it in /public.
+const { class: className = '', label = 'Brands Box' } = Astro.props;
+---
+
+<svg
+  class={`bx-logo ${className}`}
+  viewBox="0 0 312 132"
+  role="img"
+  aria-label={label}
+  fill="none"
+>
+  <!-- open square frame, above the wordmark and clear of the letters -->
+  <path
+    d="M198 66 V6 H266 V66"
+    stroke="currentColor"
+    stroke-width="3.6"
+    stroke-linecap="butt"
+    stroke-linejoin="miter"
+  />
+
+  <!-- "brandsb" — anchored at its END, finishing just left of the box -->
+  <text
+    x="233"
+    y="120"
+    text-anchor="end"
+    font-family="Quicksand, system-ui, sans-serif"
+    font-weight="500"
+    font-size="56"
+    fill="currentColor">brandsb</text>
+
+  <!-- the "o" rendered as the signature dotted box (2×2 dot grid) -->
+  <rect x="236" y="90" width="30" height="30" rx="6" stroke="currentColor" stroke-width="3.4" />
+  <circle cx="245" cy="100" r="3.1" fill="currentColor" />
+  <circle cx="257" cy="100" r="3.1" fill="currentColor" />
+  <circle cx="245" cy="111" r="3.1" fill="currentColor" />
+  <circle cx="257" cy="111" r="3.1" fill="currentColor" />
+
+  <!-- "x" — anchored at its START, beginning just right of the box -->
+  <text
+    x="270"
+    y="120"
+    text-anchor="start"
+    font-family="Quicksand, system-ui, sans-serif"
+    font-weight="500"
+    font-size="56"
+    fill="currentColor">x</text>
+</svg>
+
+<style>
+  .bx-logo {
+    height: 2.8rem;
+    width: auto;
+    display: block;
+  }
+</style>

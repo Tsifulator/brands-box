@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Showroom — Brands Box"
+  description="Visit the Brands Box showroom in Athens — open by appointment throughout the buying season."
+>
+  <section class="section container">
+    <p class="overline reveal">The space</p>
+    <h1 class="h-xl reveal" style="margin-top:1rem">The Showroom</h1>
+    <p class="lead reveal measure" style="margin-top:1.4rem">
+      Open by appointment throughout the buying calendar — a setting built to show
+      each collection at its best.
+    </p>
+  </section>
+
+  <section class="container" style="padding-bottom:var(--section)">
+    <div class="brand-grid cols-3">
+      <div class="split-media reveal"><img src="/showroom/1.jpg" alt="Brands Box showroom — millinery display" onerror="this.style.display='none'" /></div>
+      <div class="split-media reveal"><img src="/showroom/2.jpg" alt="Brands Box showroom — the space" onerror="this.style.display='none'" /></div>
+      <div class="split-media reveal"><img src="/showroom/3.jpg" alt="Brands Box showroom — collections" onerror="this.style.display='none'" /></div>
+    </div>
+  </section>
+
+  <section class="section bg-bone">
+    <div class="container split">
+      <div class="reveal">
+        <p class="overline">Visit</p>
+        <h2 class="h-lg" style="margin:.8rem 0 1.6rem">Athens, Greece</h2>
+        <p class="lead">
+          Brands Box Showroom<br />
+          Meandrou 19<br />
+          115 28 Athína (Athens), Greece
+        </p>
+        <div style="margin-top:1.6rem">
+          <p class="brand-card-meta">Hours</p>
+          <p class="lead" style="margin-top:.4rem">Monday – Friday · By appointment</p>
+        </div>
+        <div style="margin-top:1.6rem">
+          <p class="brand-card-meta">Contact</p>
+          <p class="lead" style="margin-top:.4rem">
+            <a href="tel:+302109648448">+30 210 9648448</a><br />
+            <a href="mailto:dimitra@brandsboxshowroom.com">dimitra@brandsboxshowroom.com</a>
+          </p>
+        </div>
+        <div style="margin-top:2rem"><a href="/contact" class="btn">Book an appointment</a></div>
+      </div>
+      <div class="split-media reveal" style="aspect-ratio:4/5; background:var(--stone)">
+        <iframe
+          title="Brands Box showroom location — Meandrou 19, Athens"
+          src="https://www.google.com/maps?q=Meandrou%2019,%20115%2028%20Athina,%20Greece&output=embed"
+          style="width:100%; height:100%; border:0; display:block"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</Base>

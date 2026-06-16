@@ -1,0 +1,41 @@
+---
+import Logo from './Logo.astro';
+const year = 2026;
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <Logo class="footer-logo" />
+      <p class="footer-tagline">
+        A multibrand fashion showroom in the heart of Athens.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="/brands">Brands</a>
+      <a href="/about">About</a>
+      <a href="/showroom">Showroom</a>
+      <a href="/contact">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Showroom</h4>
+      <p>Meandrou 19<br />115 28 Athína, Greece</p>
+      <a href="tel:+302109648448">+30 210 9648448</a>
+      <a href="mailto:dimitra@brandsboxshowroom.com">dimitra@brandsboxshowroom.com</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Follow</h4>
+      <a href="https://www.instagram.com/brandsboxshowroom/" target="_blank" rel="noopener">Instagram</a>
+      <a href="/contact">Become a stockist</a>
+    </div>
+  </div>
+
+  <div class="container footer-base">
+    <span>© {year} Brands Box. All rights reserved.</span>
+    <span class="footer-credit">Wholesale · Multibrand showroom · Athens</span>
+  </div>
+</footer>

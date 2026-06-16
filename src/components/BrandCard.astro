@@ -1,0 +1,13 @@
+---
+const { brand } = Astro.props;
+---
+
+<a href={`/brands/${brand.slug}`} class="brand-card reveal">
+  <div class="brand-card-media logo-tile">
+    {brand.logo
+      ? <img src={brand.logo} alt={`${brand.name} — ${brand.category}`} loading="lazy" />
+      : <span class="logo-fallback">{brand.name}</span>}
+  </div>
+  <h3 class="brand-card-name">{brand.name}</h3>
+  <p class="brand-card-meta">{brand.origin} · {brand.category}</p>
+</a>
