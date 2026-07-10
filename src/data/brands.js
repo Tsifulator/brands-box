@@ -70,18 +70,6 @@ export const brands = [
     site: 'https://alessiasanti.com',
   },
   {
-    slug: 'indi-and-cold',
-    name: 'Indi & Cold',
-    origin: 'Spain',
-    category: 'Womenswear',
-    since: '',
-    short: 'San Sebastián craft and free spirit.',
-    blurb:
-      'From San Sebastián, Indi & Cold marries artisanal techniques — block prints, paisley, embroidery and natural fibres — with a free, contemporary spirit, styled in warm, sun-washed Mediterranean ease.',
-    logo: '/brands/indi-and-cold-logo.png',
-    site: 'https://www.indiandcold.com',
-  },
-  {
     slug: 'jei-o',
     name: "Jei O'",
     origin: 'Italy',
